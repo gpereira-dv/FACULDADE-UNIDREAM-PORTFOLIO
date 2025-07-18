@@ -64,7 +64,6 @@ CREATE TABLE TBL_ENDERECO_COORDENADOR (
     nome VARCHAR (100) NOT NULL,
     modalidade VARCHAR (45) NOT NULL,
     carga_horaria_total DECIMAL (10,2) NOT NULL,
-    duracao_semestre INT NOT NULL,
     id_coordenador INT,
     FOREIGN KEY (id_coordenador) REFERENCES TBL_COORDENADOR(id_coordenador)
 ) ENGINE=InnoDB;
@@ -74,7 +73,6 @@ CREATE TABLE TBL_ALUNO (
     nome VARCHAR (200) NOT NULL,
     cpf VARCHAR (15) NOT NULL,
     email VARCHAR (300) NOT NULL,
-    telefone VARCHAR (15),
     data_nascimento DATE NOT NULL,
     status_aluno VARCHAR (45) NOT NULL,
     id_curso INT NOT NULL,
@@ -335,13 +333,10 @@ INSERT INTO TBL_CURSO (nome, modalidade, carga_horaria_total, id_coordenador) VA
 ('Administração', 'Presencial', 2800.00, 2),
 ('Engenharia Civil', 'Presencial', 3600.00, 3);
 
-DESCRIBE TBL_CURSO;
-ALTER TABLE TBL_CURSO DROP COLUMN duracao_semestre;
-
-INSERT INTO TBL_ALUNO (nome, cpf, email, telefone, data_nascimento, status_aluno, id_curso) VALUES 
-('João Pereira', '111.222.333-44', 'joaop@gmail.com', '(11) 99999-1111', '2000-01-10', 'Ativo', 1),
-('Maria Souza', '222.333.444-55', 'maria.s@outlook.com', '(11) 98888-2222', '1999-05-20', 'Ativo', 2),
-('Lucas Oliveira', '333.444.555-66', 'lucas.o@gmail.com', '(11) 97777-3333', '2001-03-15', 'Ativo', 3);
+INSERT INTO TBL_ALUNO (nome, cpf, email, data_nascimento, status_aluno, id_curso) VALUES 
+('João Pereira', '111.222.333-44', 'joaop@gmail.com', '2000-01-10', 'Ativo', 1),
+('Maria Souza', '222.333.444-55', 'maria.s@outlook.com', '1999-05-20', 'Ativo', 2),
+('Lucas Oliveira', '333.444.555-66', 'lucas.o@gmail.com', '2001-03-15', 'Ativo', 3);
 
 INSERT INTO TBL_EMAIL_ALUNO (email, RA) VALUES 
 ('joao.p@aluno.unidream.edu.com.br', 1),
@@ -492,3 +487,6 @@ SELECT * FROM TBL_EMPRESA_ESTAGIO;
 SELECT * FROM TBL_ESTAGIO_SUPERVISIONADO;
 
 SELECT * FROM TBL_USUARIO_SISTEMA;
+
+ALTER TABLE TBL_ALUNO DROP COLUMN telefone;
+ALTER TABLE TBL_CURSO DROP COLUMN duracao_semestre;
